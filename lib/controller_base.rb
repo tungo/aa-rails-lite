@@ -8,6 +8,8 @@ class ControllerBase
 
   # Setup the controller
   def initialize(req, res)
+    @req = req
+    @res = res
   end
 
   # Helper method to alias @already_built_response
@@ -37,4 +39,3 @@ class ControllerBase
   def invoke_action(name)
   end
 end
-
