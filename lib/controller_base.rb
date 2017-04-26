@@ -40,6 +40,15 @@ class ControllerBase
   # use ERB and binding to evaluate templates
   # pass the rendered html to render_content
   def render(template_name)
+    ctrl_name = self.class.name.underscore
+    ctrl_dir = File.dirname(__FILE__)
+
+    file_name = "#{ctrl_dir}/../views/#{ctrl_name}/#{template_name}.html.erb"
+    file = File.read(file_name)
+
+    template = ERB.new(file).result(binding)
+
+    render_content(template, 'text/html')
   end
 
   # method exposing a `Session` object
